@@ -1,0 +1,14 @@
+﻿  Timer.cpp
+  Pong.cpp
+  Player.cpp
+  Object.cpp
+  DebugPrinter.cpp
+  bitmap.cpp
+  Ball.cpp
+  01.pong.cpp
+  Generating Code...
+  01.Pong.vcxproj -> H:\FreeSSD\Downloads\Lecture 04\Debug\01.Pong.exe
+  H:\FreeSSD\Downloads\Lecture 04\01.Pong\3rdParty\SDL2-2.0.7\lib\x86\SDL2.dll
+  1 File(s) copied
+  H:\FreeSSD\Downloads\Lecture 04\01.Pong\resources\font.bmp
+  1 File(s) copied

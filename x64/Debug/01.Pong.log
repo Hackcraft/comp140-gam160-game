@@ -1,0 +1,17 @@
+﻿  Timer.cpp
+h:\freessd\downloads\lecture 04\01.pong\timer.cpp(28): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  Pong.cpp
+h:\freessd\downloads\lecture 04\01.pong\pong\pong.cpp(129): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  Player.cpp
+h:\freessd\downloads\lecture 04\01.pong\pong\player.cpp(69): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  Object.cpp
+h:\freessd\downloads\lecture 04\01.pong\pong\object.cpp(28): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  DebugPrinter.cpp
+h:\freessd\downloads\lecture 04\01.pong\pong\debugprinter.cpp(168): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  bitmap.cpp
+h:\freessd\downloads\lecture 04\01.pong\pong\bitmap.cpp(154): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  Ball.cpp
+h:\freessd\downloads\lecture 04\01.pong\pong\ball.cpp(67): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  01.pong.cpp
+h:\freessd\downloads\lecture 04\01.pong\01.pong.cpp(128): fatal error C1010: unexpected end of file while looking for precompiled header. Did you forget to add '#include "stdafx.h"' to your source?
+  Generating Code...
