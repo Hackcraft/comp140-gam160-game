@@ -1,0 +1,111 @@
+3x3
+around the player
+if occupied by a box get x
+
+// Links:
+	https://katyscode.wordpress.com/2013/01/18/2d-platform-games-collision-detection-for-dummies/
+
+
+x, y
+if circle centre x, y - (or) square x, y < radius then collide
+
+// This is box collision you dump dump!!!!
+
+// BOX TO CIRCLE
+// If colliding lock/don't move
+function willPlayerCollide(boxX, boxY, sizeX, sizeY, circleX, circle Y, circule radius)
+{
+	// Top left of box
+	if (boxX <= circleX + radius && boxY <= circleY + radius)
+		// Check for corner collision
+	// Bottom right of box
+	elseif (boxX + sizeX <= circleX - radius && boxY + sizeY <= circleY - radius)
+		// Check for corner collision
+	else
+		return false
+
+}
+
+
+// Box collide for walls,
+// Circle collide for possible enemies, loops through objects within 3x3
+
+	// Top left box
+// checking distance to X, and Y (circle PosX + radius, circle PosY + radius)
+
+	// Top right box
+// checking distamce to X + width, and Y +height (circle posX - radius, circle PosY - radius)
+
+
+
+// For boxes
+function willPlayerCollide2(boxX, boxY, sizeX, sizeY, circleX, circle Y, circule radius)
+{	
+	// Fast box collision
+	if (circleX + radius >= boxX && circleY + radius <= boxX + sizeX)
+	{
+		// If within the box, check to see if it's the square box or the circle
+		// Check to see if 
+	}
+	else
+	{	
+		// No need to run more intensive distance checks here
+		return false
+	}
+}
+
+Run box collision then see if they're close to any end points
+
+// Top left CircleX M boxX or
+
+
+
+// keep it simple, txt file map, box tiles, box collision only for now, to be expanded on later
+
+// Workout the block the player is stood on
+	// Constants
+	mapSizeX, mapSizeY
+	windowWidth, windowHeight
+function getCurrentBox(posX, posY)
+{	
+
+	return math.ceil(windowWidth / mapSizeX * posX), math.ceil(windowHeight / mapSizeY * posY)
+}
+
+// Map example
+	 1 1 1 1 1 1 1 1 \n
+	 0 0 1 0 1 0 0 1 \n
+Get map width from values until new line
+Get map height from line count
+Scale boxes to map size or scale the window to the map size??
+
+
+
+// 5 days as from 12/4/2018
+// Todo for basic prototype
+	1. Box/block/wall object (class)
+		1. Draw object based on x, y and size
+	2. Map (class)
+		1. Read info from txt file and print line by line to console
+		2. Adjust window size based on length and height of the map
+		3. Spawn box objects from map txt file
+	3. Player (class)
+		1. Player movement (arrow keys and arduino)
+		2. Box collision with map
+		3. Make game reset on collision
+	4. Arduino hooked up
+	5. 3D model
+		- Maze model on top, with big push button
+		- Three LEDs to indicate lives?
+		- Play button?
+		- Gyroscope with toggle button?
+
+// Todo for advanced prototype
+	1. Circle -> box collision
+	2. Momentum instead of straight pos setting (include varible fps handling, *FrameTime)
+	3. 
+
+Log:
+	12/04/2018:
+		Changed frame rate to 50 fps for smoother motion
+		Added wall class and tested (pass)

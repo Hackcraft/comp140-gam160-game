@@ -1,6 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "SerialInterface.h"
+#include "Wall.h"
 
 class Game
 {

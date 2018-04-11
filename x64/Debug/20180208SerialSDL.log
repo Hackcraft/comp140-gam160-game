@@ -1,7 +1,0 @@
-﻿  stdafx.cpp
-  SerialInterface.cpp
-c:\users\zb201421\downloads\comp140_sdl_pong_game-master\serialinterface.cpp(35): warning C4101: 'e': unreferenced local variable
-  Game.cpp
-  20180208SerialSDL.cpp
-  Generating Code...
-serial.lib(list_ports_win.obj) : fatal error LNK1112: module machine type 'x86' conflicts with target machine type 'x64'

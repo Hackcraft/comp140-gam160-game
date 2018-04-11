@@ -80,8 +80,12 @@ void Game::render()
 	SDL_RenderClear(mainRenderer);
 
 	// draw to the screen here!
-	player.x = serialInterface->getPosX();
-	player.y = serialInterface->getPosY();
+	//player.x = serialInterface->getPosX();
+	//player.y = serialInterface->getPosY();
+
+	// Draw test wall object
+	//Wall wall;
+	//wall.draw(mainRenderer);
 	
 	SDL_SetRenderDrawColor(mainRenderer, 255, 0, 0, 255);
 	SDL_RenderFillRect(mainRenderer, &player);
