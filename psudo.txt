@@ -103,9 +103,13 @@ Scale boxes to map size or scale the window to the map size??
 // Todo for advanced prototype
 	1. Circle -> box collision
 	2. Momentum instead of straight pos setting (include varible fps handling, *FrameTime)
-	3. 
+	3. cin read class to access functions from console like chaning map
+
+Optimisation:
+	Save mainRenderer on class creation to each class that needs it instead of pass through function arguments each time
 
 Log:
 	12/04/2018:
 		Changed frame rate to 50 fps for smoother motion
 		Added wall class and tested (pass)
+		Added Map class
