@@ -13,5 +13,7 @@ public:
 
 private:
 	SDL_Rect rect;
+
+	int gridPosX, gridPosY = 0;
 };
 

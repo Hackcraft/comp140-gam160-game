@@ -68,6 +68,8 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	player.w = 10;
 	player.h = 10;
 
+	Map map;
+
 	return true;
 }
 
@@ -86,6 +88,8 @@ void Game::render()
 	// Draw test wall object
 	//Wall wall;
 	//wall.draw(mainRenderer);
+
+	map.draw(mainRenderer);
 	
 	SDL_SetRenderDrawColor(mainRenderer, 255, 0, 0, 255);
 	SDL_RenderFillRect(mainRenderer, &player);
@@ -117,7 +121,6 @@ void Game::handleEvents()
 			isRunning = false;
 			break;
 		case SDL_MOUSEBUTTONDOWN:
-			std::cout << "Hello?2??" << std::endl;
 			break;
 		default:
 			break;

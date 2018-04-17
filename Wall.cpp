@@ -32,6 +32,11 @@ void Wall::setSize(unsigned int width, unsigned int height)
 
 void Wall::setPos(unsigned int x, unsigned int y)
 {
-	rect.x = x;
-	rect.y = y;
+	// Grid reference
+	gridPosX = x;
+	gridPosY = y;
+
+	// Scale the position by the size
+	rect.x = x * rect.w;
+	rect.y = y * rect.h;
 }

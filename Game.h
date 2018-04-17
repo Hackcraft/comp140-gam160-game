@@ -1,7 +1,7 @@
 #pragma once
 #include "SDL.h"
 #include "SerialInterface.h"
-#include "Wall.h"
+#include "Map.h"
 
 class Game
 {
@@ -26,5 +26,7 @@ private:
 	SerialInterface* serialInterface;
 
 	SDL_Rect player;
+
+	Map map;
 };
 
