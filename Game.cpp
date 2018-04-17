@@ -64,11 +64,14 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	isRunning = true;
 	cout << "SDL init success \n";
 
-	// Set the size for the player
-	player.w = 10;
-	player.h = 10;
+	//Map map;
 
-	Map map;
+	// Set the size for the player
+	player.setSize(10, 10);
+	// Set the posistion for the player
+	serialInterface->setPosX(map.getSpawnPositionX() * map.getWallScale() + (map.getWallScale() / 2 - player.getWidth() / 2));
+	serialInterface->setPosY(map.getSpawnPositionY() * map.getWallScale() + (map.getWallScale() / 2 - player.getHeight() / 2));
+
 
 	return true;
 }
@@ -82,17 +85,13 @@ void Game::render()
 	SDL_RenderClear(mainRenderer);
 
 	// draw to the screen here!
-	//player.x = serialInterface->getPosX();
-	//player.y = serialInterface->getPosY();
+	player.setPos(serialInterface->getPosX()/2, serialInterface->getPosY()/2);
 
-	// Draw test wall object
-	//Wall wall;
-	//wall.draw(mainRenderer);
-
+	// Draw the map
 	map.draw(mainRenderer);
 	
-	SDL_SetRenderDrawColor(mainRenderer, 255, 0, 0, 255);
-	SDL_RenderFillRect(mainRenderer, &player);
+	// Draw the player
+	player.draw(mainRenderer);
 
 	// render new frame
 	SDL_RenderPresent(mainRenderer);

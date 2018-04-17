@@ -2,6 +2,7 @@
 #include "SDL.h"
 #include "SerialInterface.h"
 #include "Map.h"
+#include "Player.h"
 
 class Game
 {
@@ -25,7 +26,7 @@ private:
 
 	SerialInterface* serialInterface;
 
-	SDL_Rect player;
+	Player player;
 
 	Map map;
 };

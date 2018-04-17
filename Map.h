@@ -24,6 +24,11 @@ public:
 	// Returns the finish position of the map
 	int getFinishPosition();
 
+	int getSpawnPositionX();
+	int getSpawnPositionY();
+
+	int getWallScale();
+
 private:
 	// 2D char array for the map values
 	// W Wall, S Space, C Character, F Finish

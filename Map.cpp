@@ -64,6 +64,8 @@ void Map::loadDefault()
 				break;
 			// Finish/end
 			case('F'):
+				finishPosX = x;
+				finishPosY = y;
 				break;
 			default:
 				break;
@@ -83,7 +85,23 @@ int Map::getSpawnPosition()
 	return spawnPosX, spawnPosY;
 }
 
+int Map::getSpawnPositionX()
+{
+	return spawnPosX;
+}
+
+int Map::getSpawnPositionY()
+{
+	return spawnPosY;
+}
+
+
 int Map::getFinishPosition()
 {
 	return finishPosX, finishPosY;
+}
+
+int Map::getWallScale()
+{
+	return wallScale;
 }
