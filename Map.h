@@ -29,6 +29,15 @@ public:
 
 	int getWallScale();
 
+	// Width and height of SDL window
+	double getWindowWidth() { return windowWidth; };
+	double getWindowHeight() { return windowHeight; };
+
+	double getMapWidth() { return mapWidth; };
+	double getMapHeight() { return mapHeight; }
+
+	char getSquare(int x, int y);
+
 private:
 	// 2D char array for the map values
 	// W Wall, S Space, C Character, F Finish
@@ -44,8 +53,11 @@ private:
 		{ 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'F', 'W' },
 		{ 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W', 'W' },
 	};
-	int mapWidth = 10;
-	int mapHeight = 10;
+	double mapWidth = 10.0f;
+	double mapHeight = 10.0f;
+
+	double windowWidth = 500.0f;
+	double windowHeight = 500.0f;
 
 	std::vector<Wall*> walls;
 

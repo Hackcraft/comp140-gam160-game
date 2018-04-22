@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "Game.h"
 #include <iostream>
+#include <cmath>
 
 using std::cout;
 
@@ -68,10 +69,14 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 
 	// Set the size for the player
 	player.setSize(10, 10);
-	// Set the posistion for the player
-	serialInterface->setPosX(map.getSpawnPositionX() * map.getWallScale() + (map.getWallScale() / 2 - player.getWidth() / 2));
-	serialInterface->setPosY(map.getSpawnPositionY() * map.getWallScale() + (map.getWallScale() / 2 - player.getHeight() / 2));
 
+	// Commented out as potentiometers have a limited range of movement so this would cause the player to get stuck (they need to be reset)
+	// Set the posistion for the player
+	//serialInterface->setPosX(map.getSpawnPositionX() * map.getWallScale() + (map.getWallScale() / 2 - player.getWidth() / 2));
+	//serialInterface->setPosY(map.getSpawnPositionY() * map.getWallScale() + (map.getWallScale() / 2 - player.getHeight() / 2));
+
+	// Send the current map to the collision class
+	collision.setMap(&map);
 
 	return true;
 }
@@ -85,7 +90,7 @@ void Game::render()
 	SDL_RenderClear(mainRenderer);
 
 	// draw to the screen here!
-	player.setPos(serialInterface->getPosX()/2, serialInterface->getPosY()/2);
+	player.setPos(500.f / 1023.f * fmax(serialInterface->getPosX() - player.getWidth(), 1), 500.f / 1023.f * fmax(serialInterface->getPosY() - player.getHeight(), 1));
 
 	// Draw the map
 	map.draw(mainRenderer);
@@ -104,6 +109,10 @@ void Game::render()
 void Game::update()
 {
 	serialInterface->getPositions();
+	if (collision.hasCollided(player) == true)
+	{
+		std::cout << "You lose!" << std::endl;
+	}
 }
 
 /*
@@ -123,19 +132,6 @@ void Game::handleEvents()
 			break;
 		default:
 			break;
-		}
-		// Arrow keys
-		if (event.type == SDL_KEYDOWN) 
-		{
-			auto key = event.key.keysym.sym;
-			if (key == SDLK_UP)
-				serialInterface->setPosY(serialInterface->getPosY() + 2);
-			if (key == SDLK_DOWN)
-				serialInterface->setPosY(serialInterface->getPosY() - 2);
-			if (key == SDLK_LEFT)
-				serialInterface->setPosX(serialInterface->getPosX() - 2);
-			if (key == SDLK_RIGHT)
-				serialInterface->setPosX(serialInterface->getPosX() + 2);
 		}
 	}
 }

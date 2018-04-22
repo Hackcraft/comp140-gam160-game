@@ -3,6 +3,7 @@
 #include "SerialInterface.h"
 #include "Map.h"
 #include "Player.h"
+#include "Collision.h"
 
 class Game
 {
@@ -29,5 +30,7 @@ private:
 	Player player;
 
 	Map map;
+
+	Collision collision;
 };
 

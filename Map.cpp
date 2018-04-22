@@ -6,11 +6,7 @@
 
 Map::Map()
 {
-	//std::ifstream infile("maps/debug.txt");
-	//std::string content(std::istreambuf_iterator<char>(infile), std::istreambuf_iterator<char>());
-
-	//std::cout << content << std::endl;
-
+	// Temporary map until file loading is implemented
 	loadDefault();
 }
 
@@ -19,8 +15,8 @@ Map::~Map()
 {
 	// Delete the wall objects
 	for (auto it = begin(walls); it != end(walls); ++it) {
-		(*it) = NULL;
 		delete (*it);
+		(*it) = nullptr;
 	}
 }
 
@@ -31,7 +27,7 @@ void Map::draw(SDL_Renderer * mainRenderer)
 		(*it)->draw(mainRenderer);
 	}
 
-	// Draw player
+	// Draw start
 
 	// Draw finish
 }
@@ -76,7 +72,7 @@ void Map::loadDefault()
 
 bool Map::loadFromFile(std::string path, SDL_Renderer * mainRenderer)
 {
-	// Not yet implimented so use default map instead
+	// Not yet implemented so use default map instead
 	return false;
 }
 
@@ -104,4 +100,12 @@ int Map::getFinishPosition()
 int Map::getWallScale()
 {
 	return wallScale;
+}
+
+char Map::getSquare(int x, int y)
+{
+	if (x <= mapWidth && y <= mapHeight)
+	{
+		return map[x][y];
+	}
 }
