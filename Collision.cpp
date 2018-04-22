@@ -56,8 +56,6 @@ bool Collision::hasCollided(Player &Player)
 void Collision::setMap(Map * Map)
 {
 	map = Map;
-
-	std::cout << map << std::endl;
 }
 
 // Private
