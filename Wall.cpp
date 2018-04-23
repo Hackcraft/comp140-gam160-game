@@ -56,8 +56,5 @@ void Wall::setColour(int r, int g, int b, int a)
 
 void Wall::setColour(int col[])
 {
-	colour[0] = clamp(col[0], 0, 255);
-	colour[1] = clamp(col[1], 0, 255);
-	colour[2] = clamp(col[2], 0, 255);
-	colour[3] = clamp(col[3], 0, 255);
+	Wall::setColour(col[0], col[1], col[2], col[3]);
 }

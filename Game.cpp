@@ -15,10 +15,47 @@ Game::Game()
 }
 
 /*
-	Decontructor - also not used in this case
+	Decontructor
 */
 Game::~Game()
 {
+	//// Surfaces
+	//if (goToStartSurface)
+	//{
+	//	delete goToStartSurface;
+	//	goToStartSurface = nullptr;
+	//}
+
+	//if (startSurface)
+	//{
+	//	delete startSurface;
+	//	startSurface = nullptr;
+	//}
+
+	//if (finishSurface)
+	//{
+	//	delete finishSurface;
+	//	finishSurface = nullptr;
+	//}
+
+	//// Textures
+	//if (goToStartTexture)
+	//{
+	//	delete goToStartTexture;
+	//	goToStartTexture = nullptr;
+	//}
+
+	//if (startTexture)
+	//{
+	//	delete startTexture;
+	//	startTexture = nullptr;
+	//}
+
+	//if (finishTexture)
+	//{
+	//	delete finishTexture;
+	//	finishTexture = nullptr;
+	//}
 }
 
 /*
@@ -65,15 +102,11 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 	isRunning = true;
 	cout << "SDL init success \n";
 
-	//Map map;
+	// Load SDL image for PNG
+	//IMG_Init(IMG_INIT_PNG);
 
 	// Set the size for the player
 	player.setSize(10, 10);
-
-	// Commented out as potentiometers have a limited range of movement so this would cause the player to get stuck (they need to be reset)
-	// Set the posistion for the player
-	//serialInterface->setPosX(map.getSpawnPositionX() * map.getWallScale() + (map.getWallScale() / 2 - player.getWidth() / 2));
-	//serialInterface->setPosY(map.getSpawnPositionY() * map.getWallScale() + (map.getWallScale() / 2 - player.getHeight() / 2));
 
 	// Send the current map to the collision class
 	collision.setMap(&map);
@@ -83,23 +116,61 @@ bool Game::init(const char * title, int xpos, int ypos, int width, int height, i
 
 void Game::render()
 {
-	// set background color
-	SDL_SetRenderDrawColor(mainRenderer, 255, 255, 255, 255);
-	
-	// clear previous frame
-	SDL_RenderClear(mainRenderer);
+	switch (gameMode) 
+	{
+	case GoToStart:
+		// set background color
+		SDL_SetRenderDrawColor(mainRenderer, 0, 0, 0, 255);
 
-	// draw to the screen here!
-	player.setPos(500.f / 1023.f * fmax(serialInterface->getPosX() - player.getWidth(), 1), 500.f / 1023.f * fmax(serialInterface->getPosY() - player.getHeight(), 1));
+		// clear previous frame
+		SDL_RenderClear(mainRenderer);
 
-	// Draw the map
-	map.draw(mainRenderer);
-	
-	// Draw the player
-	player.draw(mainRenderer);
+		// draw to the screen here!
+		player.setPos(500.f / 1023.f * fmax(serialInterface->getPosX() - player.getWidth(), 1), 500.f / 1023.f * fmax(serialInterface->getPosY() - player.getHeight(), 1));
 
-	// render new frame
-	SDL_RenderPresent(mainRenderer);
+		// Draw the map
+		map.draw(mainRenderer);
+
+		// Draw the player
+		player.draw(mainRenderer);
+
+		//SDL_RenderCopy(mainRenderer, goToStartTexture, NULL, NULL);
+		std::cout << "Go to start" << std::endl;
+
+		// render new frame
+		SDL_RenderPresent(mainRenderer);
+
+		break;
+	case Playing:
+		// set background color
+		SDL_SetRenderDrawColor(mainRenderer, 255, 255, 255, 255);
+
+		// clear previous frame
+		SDL_RenderClear(mainRenderer);
+
+		// draw to the screen here!
+		player.setPos(500.f / 1023.f * fmax(serialInterface->getPosX() - player.getWidth(), 1), 500.f / 1023.f * fmax(serialInterface->getPosY() - player.getHeight(), 1));
+
+		// Draw the map
+		map.draw(mainRenderer);
+
+		// Draw the player
+		player.draw(mainRenderer);
+
+		std::cout << "Playing" << std::endl;
+
+		// render new frame
+		SDL_RenderPresent(mainRenderer);
+		break;
+	case Won:
+		std::cout << "You have won!" << std::endl;
+		break;
+	case Lost:
+		std::cout << "You have lost." << std::endl;
+		break;
+	default:
+		break;
+	}
 }
 
 /*
@@ -109,21 +180,56 @@ void Game::render()
 void Game::update()
 {
 	serialInterface->getPositions();
-	if (collision.hasCollided(player) == true)
+	switch (gameMode)
 	{
-		std::cout << "You lose!" << std::endl;
-	}
+	case GoToStart:
+	{
+		char square = collision.getOccupiedSquare(player);
 
-	char square = collision.getOccupiedSquare(player);
-	switch (square) {
-		case 'C':
-			std::cout << "Start" << std::endl;
-			break;
-		case 'F':
-			std::cout << "Finish" << std::endl;
-			break;
-		default:
-			break;
+		if (square == 'C')
+		{
+			gameMode = Playing;
+			modeEnded = SDL_GetTicks();
+		}
+		break;
+	}
+	case Playing:
+	{
+		if (collision.hasCollided(player) == true)
+		{
+			gameMode = Lost;
+			modeEnded = SDL_GetTicks();
+		}
+		else
+		{
+			char square = collision.getOccupiedSquare(player);
+
+			if (square == 'F')
+			{
+				gameMode = Won;
+				modeEnded = SDL_GetTicks();
+			}
+		}
+		break;
+	}
+	case Won:
+	{
+		if (SDL_GetTicks() - modeEnded >= modeTimeout)
+		{
+			gameMode = GoToStart;
+		}
+		break;
+	}
+	case Lost:
+	{
+		if (SDL_GetTicks() - modeEnded >= modeTimeout)
+		{
+			gameMode = GoToStart;
+		}
+		break;
+	default:
+		break;
+	}
 	}
 }
 
@@ -159,6 +265,7 @@ void Game::clean()
 
 	// Clean up rest
 	cout << "Cleaning SDL \n";
+	//IMG_Quit();
 	SDL_DestroyWindow(mainWindow);
 	SDL_DestroyRenderer(mainRenderer);
 	SDL_Quit();
