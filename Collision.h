@@ -9,6 +9,7 @@ public:
 	~Collision();
 
 	bool hasCollided(Player &Player);
+	char getOccupiedSquare(Player &Player);
 
 	void setMap(Map * Map);
 

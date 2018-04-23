@@ -26,9 +26,6 @@ bool Collision::hasCollided(Player &Player)
 	// Top left
 	x = getCurrentBoxX(Player.getPosX());
 	y = getCurrentBoxY(Player.getPosY());
-
-	//std::cout << x << " - " << y << " --> " << map->getSquare(x, y) << std::endl; // Map block Debug
-
 	if (map->getSquare(x, y) == 'W')
 		return true;
 
@@ -51,6 +48,16 @@ bool Collision::hasCollided(Player &Player)
 		return true;
 	
 	return false;
+}
+
+char Collision::getOccupiedSquare(Player &Player)
+{
+	int middleX = getCurrentBoxX(Player.getPosX() + Player.getHeight() / 2);
+	int middleY = getCurrentBoxY(Player.getPosY() + Player.getWidth() / 2);
+
+	char square = map->getSquare(middleX, middleY);
+
+	return square;
 }
 
 void Collision::setMap(Map * Map)
