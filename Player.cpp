@@ -13,7 +13,7 @@ Player::~Player()
 
 void Player::draw(SDL_Renderer * mainRenderer)
 {
-	SDL_SetRenderDrawColor(mainRenderer, 255, 0, 0, 255);
+	SDL_SetRenderDrawColor(mainRenderer, 0, 0, 255, 255);
 	SDL_RenderFillRect(mainRenderer, &rect);
 }
 

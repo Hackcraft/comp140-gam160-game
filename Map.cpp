@@ -28,8 +28,10 @@ void Map::draw(SDL_Renderer * mainRenderer)
 	}
 
 	// Draw start
+	start.draw(mainRenderer);
 
 	// Draw finish
+	finish.draw(mainRenderer);
 }
 
 void Map::loadDefault()
@@ -55,11 +57,19 @@ void Map::loadDefault()
 				break;
 			// Character/spawn
 			case('C'):
+				start.setPos(x, y);
+				start.setSize(wallScale, wallScale);
+				start.setColour(startCol);
+
 				spawnPosX = x;
 				spawnPosY = y;
 				break;
 			// Finish/end
 			case('F'):
+				finish.setPos(x, y);
+				finish.setSize(wallScale, wallScale);
+				finish.setColour(finishCol);
+
 				finishPosX = x;
 				finishPosY = y;
 				break;

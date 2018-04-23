@@ -18,7 +18,7 @@ Collision::~Collision()
 	}
 }
 
-// Generic collision function, determins collision type based on flags
+// Generic collision function, determins collision type based on flags(not yet implimented)
 bool Collision::hasCollided(Player &Player)
 {
 	int x, y;
@@ -50,6 +50,7 @@ bool Collision::hasCollided(Player &Player)
 	return false;
 }
 
+// Returns the square the centre of the player is on
 char Collision::getOccupiedSquare(Player &Player)
 {
 	int middleX = getCurrentBoxX(Player.getPosX() + Player.getHeight() / 2);

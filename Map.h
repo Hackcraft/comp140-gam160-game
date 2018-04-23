@@ -61,6 +61,12 @@ private:
 
 	std::vector<Wall*> walls;
 
+	Wall start;
+	Wall finish;
+
+	int startCol[4] = { 0, 255, 0 };
+	int finishCol[4] = { 255, 0, 0};
+
 	// The spawn position of the player
 	int spawnPosX, spawnPosY = 0;
 	// The finish position of the player

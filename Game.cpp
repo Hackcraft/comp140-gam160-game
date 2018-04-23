@@ -113,6 +113,18 @@ void Game::update()
 	{
 		std::cout << "You lose!" << std::endl;
 	}
+
+	char square = collision.getOccupiedSquare(player);
+	switch (square) {
+		case 'C':
+			std::cout << "Start" << std::endl;
+			break;
+		case 'F':
+			std::cout << "Finish" << std::endl;
+			break;
+		default:
+			break;
+	}
 }
 
 /*
